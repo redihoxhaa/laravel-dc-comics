@@ -10,6 +10,7 @@ class ComicSeeder extends Seeder
 {
     public function run(): void
     {
+        // Prendiamo il contenuto del file dalla cartella data nella root path
         $comics = include base_path('data/comics.php');
 
         foreach ($comics as $comic_item) {

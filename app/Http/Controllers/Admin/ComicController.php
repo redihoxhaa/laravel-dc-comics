@@ -31,10 +31,14 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Prendo i dati post
         $data = $request->all();
 
+        // Creo nuova istanza fumetto
         $comic = new Comic();
 
+        // Mappo i dati del form
         $comic->title = $data['title'];
         $comic->thumb = $data['thumb'];
         $comic->description = $data['description'];
@@ -52,8 +56,10 @@ class ComicController extends Controller
             $comic->is_published = true;
         }
 
+        // Salvo l'istanza
         $comic->save();
 
+        // Redirect alla pagina del nuovo fumetto (possiamo passare l'istanza in quanto la ricerca per id è automatica)
         return redirect()->route('comics.show', $comic);
     }
 
