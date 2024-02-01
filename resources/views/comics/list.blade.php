@@ -7,7 +7,7 @@
 @endsection
 
 @section('main')
-    <main class="d-flex flex-column align-items-center">
+    <main class="all-comics d-flex flex-column align-items-center">
         <a href="{{ route('comics.create') }}" class="btn btn-success text-uppercase mb-5">Create a new
             comic</a>
         <ul class="row g-5">
@@ -21,7 +21,7 @@
                         </a>
                         <div class="card-body d-flex flex-column">
                             <a href="{{ route('comics.show', $comic) }}">
-                                <h3 class="title">{{ $comic->title }}</h3>
+                                <h3 class="title pt-3">{{ $comic->title }}</h3>
                             </a>
                             <div class="type-series pb-3 pt-2">
                                 is a

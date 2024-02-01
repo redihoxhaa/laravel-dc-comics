@@ -8,13 +8,36 @@
 @import "_partials/mixins.scss";
 
 
-.pic-container {
-    width: 100%;
-    border-radius: 5px 5px 0 0;
-    overflow: hidden;
+h1 {
+    font-size: 80px;
+}
 
-    img {
+.all-comics {
+
+    .pic-container {
         width: 100%;
-        object-fit: cover;
+        border-radius: 5px 5px 0 0;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
     }
+}
+
+
+.single-comic {
+
+    .pic-container {
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
 }
