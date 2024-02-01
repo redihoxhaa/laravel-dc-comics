@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->text('thumb');
             $table->text('description')->nullable();
-            $table->date('publication_year')->nullable();
+            $table->date('sale_date')->nullable();
             $table->string('writers');
             $table->string('artists')->nullable();
             $table->string('publisher', 30)->nullable();

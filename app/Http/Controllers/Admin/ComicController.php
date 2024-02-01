@@ -38,14 +38,20 @@ class ComicController extends Controller
         $comic->title = $data['title'];
         $comic->thumb = $data['thumb'];
         $comic->description = $data['description'];
-        $comic->publication_year = $data['sale_date'];
+        $comic->sale_date = $data['sale_date'];
         $comic->writers = $data['writers'];
         $comic->artists = $data['artists'];
         $comic->publisher = $data['publisher'];
         $comic->type = $data['type'];
         $comic->series = $data['series'];
         $comic->price = $data['price'];
-        $comic->is_published = $data['is_published'];
+
+        if ($data['sale_date'] > now()->toDateString()) {
+            $comic->is_published = false;
+        } else {
+            $comic->is_published = true;
+        }
+
         $comic->save();
     }
 
