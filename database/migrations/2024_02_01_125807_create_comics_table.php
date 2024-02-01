@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('publisher', 30)->nullable();
             $table->string('type', 30)->nullable();
             $table->string('series')->nullable();
-            $table->decimal('price', 8, 2)->nullable();
+            $table->decimal('price', 8, 2)->unsigned()->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
