@@ -15,10 +15,11 @@ class ComicSeeder extends Seeder
         foreach ($comics as $comic_item) {
             $comic = new Comic();
             $comic->title = $comic_item['title'];
+            $comic->thumb = $comic_item['thumb'];
             $comic->description = $comic_item['description'];
             $comic->publication_year = $comic_item['sale_date'];
-            $comic->writer = implode(', ', $comic_item['writers']);
-            $comic->artist = implode(', ', $comic_item['artists']);
+            $comic->writers = implode(', ', $comic_item['writers']);
+            $comic->artists = implode(', ', $comic_item['artists']);
             $comic->type = $comic_item['type'];
             $comic->series = $comic_item['series'];
             $comic->price = (float) str_replace('$', '', $comic_item['price']);

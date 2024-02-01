@@ -3,14 +3,13 @@
 @include('subs.header')
 
 @section('title')
-    Titolo di prova
+    DC Comics
 @endsection
 
 @section('main')
     <main>
-        <img src="{{ Vite::asset('resources/img/cj.jpg') }}" alt="">
-        <p>This is the main section of the main page</p>
-        <a href="{{ route('second') }}">Go to the second page</a>
+        <a href="{{ route('comics.index') }}">GUARDA I MIEI FUMETTI</a>
+
     </main>
 @endsection
 
