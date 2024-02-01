@@ -7,17 +7,22 @@
 @endsection
 
 @section('main')
-    <main>
+    <main class="d-flex flex-column align-items-center">
+        <a href="{{ route('comics.create') }}" class="btn btn-success text-uppercase mb-5">Create a new
+            comic</a>
         <ul class="row g-5">
             @foreach ($comics as $comic)
                 <li class="col-12 col-md-6 d-flex">
                     <div class="card w-100">
-                        <div class="pic-container">
-                            <img src="{{ $comic->thumb }}" alt="{{ $comic->title }} thumb">
-
-                        </div>
+                        <a href="{{ route('comics.show', $comic) }}">
+                            <div class="pic-container">
+                                <img src="{{ $comic->thumb }}" alt="{{ $comic->title }} thumb">
+                            </div>
+                        </a>
                         <div class="card-body d-flex flex-column">
-                            <h3 class="title">{{ $comic->title }}</h3>
+                            <a href="{{ route('comics.show', $comic) }}">
+                                <h3 class="title">{{ $comic->title }}</h3>
+                            </a>
                             <div class="type-series pb-3 pt-2">
                                 is a
                                 <span class="text-uppercase">{{ $comic->type }}</span>

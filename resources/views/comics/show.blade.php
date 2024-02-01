@@ -1,1 +1,1 @@
-Sono la pagina show
+Sono la pagina show {{ $comic->id }}
