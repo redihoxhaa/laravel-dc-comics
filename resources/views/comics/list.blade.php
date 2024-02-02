@@ -74,6 +74,27 @@
                                 </div>
                             </div>
 
+                            <div class="tools row my-5">
+                                <div class="col-6 text-center">
+                                    <a href="{{ route('comics.edit', $comic->id) }}"
+                                        class="btn btn-warning text-uppercase w-75">Edit</a>
+
+                                </div>
+                                <div class="col-6 text-center">
+                                    <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                                        @csrf
+
+                                        {{-- Metodo di destroy --}}
+                                        @method('DELETE')
+
+                                        <input class="delete btn btn-danger text-uppercase w-75" type="submit"
+                                            value="DELETE">
+                                    </form>
+
+
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>

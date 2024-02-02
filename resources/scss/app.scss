@@ -48,3 +48,13 @@ h1 {
         width: 10%;
     }
 }
+
+
+
+.tools {
+    flex-grow: 1;
+
+    .col-6 {
+        margin-top: auto;
+    }
+}
