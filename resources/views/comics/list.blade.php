@@ -74,29 +74,60 @@
                                 </div>
                             </div>
 
+                            {{-- Pulsanti --}}
                             <div class="tools row my-5">
+
+                                {{-- Pulsante di modifica --}}
                                 <div class="col-6 text-center">
                                     <a href="{{ route('comics.edit', $comic->id) }}"
                                         class="btn btn-warning text-uppercase w-75">Edit</a>
-
                                 </div>
+
+                                {{-- Area di conferma eliminazione --}}
                                 <div class="col-6 text-center">
-                                    <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
-                                        @csrf
 
-                                        {{-- Metodo di destroy --}}
-                                        @method('DELETE')
+                                    {{-- Pulsante apertura modale --}}
+                                    <button class="delete btn btn-danger text-uppercase w-75" data-bs-toggle="modal"
+                                        data-bs-target="#my-dialog-{{ $comic->id }}">Delete</button>
 
-                                        <input class="delete btn btn-danger text-uppercase w-75" type="submit"
-                                            value="DELETE">
-                                    </form>
+                                    {{-- Modale --}}
+                                    <div class="modal" id="my-dialog-{{ $comic->id }}">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
 
+                                                {{-- Messaggio di alert --}}
+                                                <div class="modal-header text-center">
+                                                    <h3>Are you sure?</h3>
+                                                </div>
 
+                                                {{-- Informazione operazione --}}
+                                                <div class="modal-body text-center">
+                                                    You are about to delete {{ $comic->title }}</span>
+                                                </div>
+
+                                                <div class="modal-footer">
+
+                                                    {{-- Pulsante annulla --}}
+                                                    <button class="btn btn-success text-uppercase"
+                                                        data-bs-dismiss="modal">Keep
+                                                    </button>
+
+                                                    {{-- Pulsante elimina --}}
+                                                    <form action="{{ route('comics.destroy', $comic->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input class="btn btn-danger text-uppercase" type="submit"
+                                                            value="DELETE">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
-
                         </div>
-
                     </div>
                 </li>
             @endforeach
