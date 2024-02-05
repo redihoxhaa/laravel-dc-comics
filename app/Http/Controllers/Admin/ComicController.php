@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -30,28 +32,11 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
 
-        // Validazione
-        $request->validate([
-            'title' => 'required|unique:comics|max:40',
-            'thumb' => 'required|url',
-            'description' => 'nullable|string',
-            'sale_date' => 'nullable|date',
-            'writers' => 'required|string|max:255',
-            'artists' => 'nullable|string|max:255',
-            'publisher' => 'nullable|string|max:30',
-            'type' => [
-                'required',
-                Rule::in(['comic book', 'graphic novel']),
-            ],
-            'series' => 'nullable|string',
-            'price' => 'nullable|numeric|between:0,999999.99',
-        ]);
-
         // Prendo i dati post
-        $data = $request->all();
+        $data = $request->validated();
 
         // Creo nuova istanza fumetto
         $comic = new Comic();
@@ -100,28 +85,11 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
 
-        // Validazione
-        $request->validate([
-            'title' => 'required|unique:comics,title,' . $comic->id . '|max:50',
-            'thumb' => 'required|url',
-            'description' => 'nullable|string',
-            'sale_date' => 'nullable|date',
-            'writers' => 'required|string|max:255',
-            'artists' => 'nullable|string|max:255',
-            'publisher' => 'nullable|string|max:30',
-            'type' => [
-                'required',
-                Rule::in(['comic book', 'graphic novel']),
-            ],
-            'series' => 'nullable|string',
-            'price' => 'nullable|numeric|between:0,999999.99',
-        ]);
-
         // Prendo i dati post
-        $data = $request->all();
+        $data = $request->validated();
 
         $comic->update($data);
 
