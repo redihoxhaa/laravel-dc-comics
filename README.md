@@ -62,3 +62,29 @@ DELETE, andiamo ad aggiungere un data-bs-target che sarà l'id della modale segu
 in questo caso ```data-bs-target="#my-dialog-{{ $comic->id }}"```. Facendo così non ci dobbiamo servire di altro codice js, se non quello integrato di bootstrap 
 per passare alla modale il dato di riferimento del fumetto. Ovviamente nel form di delete, possiamo accedere alla variabile come se non ci posse la modale, 
 in questo caso ```action="{{ route('comics.destroy', $comic->id) }}"```.
+
+#### SVILUPPO ESERCIZIO 2.0
+
+In questo sviluppo dell'esercizio abbiamo implementato la validazione dei campi. Prima lo abbiamo fatto tramite la funzione **validate()**
+direttamente nel nostro controller. La validazione per il create e per l'update sono in questo caso uguali tranne che per il titolo, che viene escluso dal
+controllo nell'update nel momento in cui il titolo dell'oggetto con id che stiamo modificando è uguale a quello già presente nel database con il medesimo id.
+Questa funzione la implementiamo con la seguente sintassi: ```'title' => 'required|unique:comics,title,' . $comic->id . '|max:50',```.
+Oltre ad agire sul controller andiamo a gestire gli errori anche lato client. Innanzitutto aggiungiamo l'attributo *reuqired* agli input che non sono nullable.
+Successivamente andiamo a gestire gli errori, ad esempio nel titolo, con la sintassi `@error('title') is-invalid @enderror`, che servirà ad evidenziare
+il campo di rosso attraverso Bootstrap, e andiamo anche a rappresentare l'errore con
+
+```PHP
+@error('title')
+<div class="alert alert-danger">{{ $message }}</div>
+@enderror
+```
+
+Successivamente spostiamo la validazione in una request personalizzata che creiamo attraverso il comando `php artisan make:request NomeRequest`.
+Cambiamo quindi il tipo di richiesta nell'update e nello store da `Request $request` a `NomeRequest $request`. Prendiamo i dati non più con all() ma con validated().
+Nella request personalizzata nella funzione rules andiamo ad elencare le stesse condizioni di validazione che abbiamo usato in precedenza, e nella funzione messages
+elenchiamo tutti i messaggi di errore personalizzati nel momento in cui non vanno bene quelli default.
+
+In questo caso per quanto riguarda il controllo sull'update del titolo, non avendo a disposizione in modo diretto dell'istanza $comic, dobbiamo riferirci a quest'ultima
+passando per $this, quindi `$this->comic->id`.
+
+Ricordiamoci nel form di ciclare gli errori nel caso un campo input ce ne abbia più di uno.

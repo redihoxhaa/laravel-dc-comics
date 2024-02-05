@@ -44,7 +44,7 @@
             {{-- Input descrizione --}}
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">description</span>
-                <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" required>{{ old('description') }}</textarea>
+                <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description">{{ old('description') }}</textarea>
                 @error('description')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
@@ -54,7 +54,7 @@
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">sale date</span>
                 <input type="date" class="form-control @error('sale_date') is-invalid @enderror" id="sale_date"
-                    name="sale_date" value="{{ old('sale_date') }}" required>
+                    name="sale_date" value="{{ old('sale_date') }}">
                 @error('sale_date')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
@@ -64,7 +64,7 @@
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">price $</span>
                 <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
-                    value="{{ old('price') }}" required>
+                    value="{{ old('price') }}">
                 @error('price')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
@@ -84,7 +84,7 @@
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">artists</span>
                 <input type="text" class="form-control @error('artists') is-invalid @enderror" name="artists"
-                    value="{{ old('artists') }}" required>
+                    value="{{ old('artists') }}">
                 @error('artists')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
@@ -94,7 +94,7 @@
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">publisher</span>
                 <input type="text" class="form-control @error('publisher') is-invalid @enderror" name="publisher"
-                    value="{{ old('publisher') }}" required>
+                    value="{{ old('publisher') }}">
                 @error('publisher')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
@@ -104,7 +104,7 @@
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">type</span>
                 <input type="text" class="form-control @error('type') is-invalid @enderror" name="type"
-                    value="{{ old('type') }}" required>
+                    value="{{ old('type') }}">
                 @error('type')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
@@ -114,7 +114,7 @@
             <div class="input-group flex-nowrap">
                 <span class="input-group-text text-capitalize">series</span>
                 <input type="text" class="form-control @error('series') is-invalid @enderror" name="series"
-                    value="{{ old('series') }}" required>
+                    value="{{ old('series') }}">
                 @error('series')
                     <div class="alert alert-danger m-0">{{ $message }}</div>
                 @enderror
