@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
 {
@@ -31,6 +32,23 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Validazione
+        $request->validate([
+            'title' => 'required|unique:comics|max:40',
+            'thumb' => 'required|url',
+            'description' => 'nullable|string',
+            'sale_date' => 'nullable|date',
+            'writers' => 'required|string|max:255',
+            'artists' => 'nullable|string|max:255',
+            'publisher' => 'nullable|string|max:30',
+            'type' => [
+                'required',
+                Rule::in(['comic book', 'graphic novel']),
+            ],
+            'series' => 'nullable|string',
+            'price' => 'nullable|numeric|between:0,999999.99',
+        ]);
 
         // Prendo i dati post
         $data = $request->all();
@@ -84,6 +102,24 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+
+        // Validazione
+        $request->validate([
+            'title' => 'required|unique:comics,title,' . $comic->id . '|max:50',
+            'thumb' => 'required|url',
+            'description' => 'nullable|string',
+            'sale_date' => 'nullable|date',
+            'writers' => 'required|string|max:255',
+            'artists' => 'nullable|string|max:255',
+            'publisher' => 'nullable|string|max:30',
+            'type' => [
+                'required',
+                Rule::in(['comic book', 'graphic novel']),
+            ],
+            'series' => 'nullable|string',
+            'price' => 'nullable|numeric|between:0,999999.99',
+        ]);
+
         // Prendo i dati post
         $data = $request->all();
 
